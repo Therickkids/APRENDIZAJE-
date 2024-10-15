@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Prueba</title>
+    <style>
+        #contenedor {
+            text-align: center;
+            margin-top: 150px;
+        }
+        #text {
+            font-size: 24px;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="contenedor">
+        <p id="text">Hola Mundo</p> 
+        <br>
+        <hr>
+        <br>
+        <button id="btn-custom">Cambiar texto</button>
+    </div>
+
+    <script>
+        class Persona {
+            constructor(nombre, edad) {
+                this.nombre = nombre;
+                this.edad = edad;
+            }
+
+            saludo() {
+                console.log(`Hola, soy un estudiante ${this.nombre}`);
+            }
+
+            changeText() {
+                const text = document.getElementById("text");
+                text.innerText = "Adiós Mundo";
+            }
+
+            createElement() {
+                const textnew = document.createElement("p");
+                textnew.innerText = "Este es un elemento creado con el DOM";
+                textnew.id = "new-text-id";
+                textnew.className = "text-class";
+
+                const contenedor = document.getElementById("contenedor");
+                contenedor.appendChild(textnew);
+            }
+
+            deleteElement() {
+                const text = document.getElementById("text");
+                text.remove();
+            }
+        }
+
+        class Estudiante extends Persona {
+            constructor(nombre, edad, curso) {
+                super(nombre, edad);
+                this.curso = curso;
+            }
+        }
+
+        const e1 = new Estudiante("Evelyn", 22, "Álgebra");
+        e1.saludo();
+        e1.createElement(); // Crea el elemento antes de eliminar el original
+
+        const btn_custom = document.getElementById("btn-custom");
+        btn_custom.onclick = () => {
+            e1.changeText(); // Cambia el texto al hacer clic en el botón
+        };
+    </script>
+</body>
+</html>
